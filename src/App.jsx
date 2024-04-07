@@ -1,17 +1,11 @@
 import "./App.css";
+import { TodoForm } from "./components/TodoForm";
 
 function App() {
   return (
     <div>
       <h1>To Do List</h1>
-      <form className="todo-form">
-        <input
-          className="todo-input"
-          type="text"
-          placeholder="Add a new todo"
-        />
-        <button className="input-btn">Add</button>
-      </form>
+      <TodoForm />
       <div>
         <ul className="todo-list">
           <li className="list-item">
