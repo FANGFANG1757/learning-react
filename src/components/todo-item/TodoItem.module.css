@@ -1,0 +1,13 @@
+.list {
+  list-style: none;
+  margin-top: 10px;
+  display: flex;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+.content {
+  flex-grow: 2;
+}
