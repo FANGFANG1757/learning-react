@@ -11,8 +11,8 @@ export function TodoItem(props) {
         {content}
       </div>
       <div>
-        <button className="edit-btn">Edit</button>
-        <button className="delete-btn">Delete</button>
+        <button>Edit</button>
+        <button>Delete</button>
       </div>
     </div>
   );
