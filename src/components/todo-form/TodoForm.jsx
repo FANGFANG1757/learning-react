@@ -1,7 +1,7 @@
 import style from "./TodoForm.module.css";
 import { useState } from "react";
 
-export function TodoForm(props) {
+export function TodoForm(onSubmit) {
   const [newTodo, setNewTodo] = useState("");
 
   const handleSubmit = (e) => {
@@ -9,7 +9,7 @@ export function TodoForm(props) {
     if (newTodo === "") {
       return;
     }
-    props.onSubmit(newTodo);
+    onSubmit(newTodo);
     setNewTodo("");
   };
 
