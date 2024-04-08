@@ -1,9 +1,6 @@
 import style from "./TodoItem.module.css";
 
-export function TodoItem(props) {
-  const {
-    todo: { id, content, checked },
-  } = props;
+export function TodoItem({ todo: { id, content, checked }, onDelete }) {
   return (
     <div className={style.item}>
       <div className={style.content}>
@@ -12,7 +9,13 @@ export function TodoItem(props) {
       </div>
       <div>
         <button>Edit</button>
-        <button>Delete</button>
+        <button
+          onClick={() => {
+            onDelete(id);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
