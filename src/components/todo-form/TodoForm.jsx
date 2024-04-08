@@ -10,7 +10,6 @@ export function TodoForm(props) {
       return;
     }
     props.onSubmit(newTodo);
-
     setNewTodo("");
   };
 
