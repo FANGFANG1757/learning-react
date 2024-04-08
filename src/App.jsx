@@ -12,15 +12,18 @@ function App() {
       { id: crypto.randomUUID(), content, completed: false },
     ]);
   }
+  function deleteTodo(id) {
+    console.log(id);
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
 
   return (
     <div>
       <h1>To Do List</h1>
       <TodoForm onSubmit={addTodo} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} />
     </div>
   );
-  ß;
 }
 
 export default App;
