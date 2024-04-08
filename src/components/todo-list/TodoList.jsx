@@ -7,7 +7,12 @@ export function TodoList(props) {
     <ul className={style.list}>
       <li>
         {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            checked={todo.checked}
+            content={todo.content}
+          />
         ))}
       </li>
     </ul>

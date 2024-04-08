@@ -1,33 +1,23 @@
 import { useState } from "react";
 import "./App.css";
 import { TodoList } from "./components/todo-list";
+import { TodoForm } from "./components/todo-form";
 
 function App() {
-  const [todos] = useState([
-    {
-      id: 1,
-      checked: false,
-      content: "this is a test todo",
-    },
-    {
-      id: 2,
-      checked: false,
-      content: "this is a test todo",
-    },
-    {
-      id: 3,
-      checked: true,
-      content: "this is a test todo",
-    },
-    {
-      id: 4,
-      checked: false,
-      content: "thi todo",
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
+
+  function addTodo(content){
+  
+    setTodos([
+      ...todos,
+      { id: crypto.randomUUID(), content, completed: false },
+    ]);
+  }
+
   return (
     <div>
       <h1>To Do List</h1>
+      <TodoForm onSubmit={addTodo}/>
       <TodoList todos={todos} />
     </div>
   );
