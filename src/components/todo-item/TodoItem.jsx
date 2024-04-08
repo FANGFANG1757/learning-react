@@ -1,6 +1,6 @@
 import style from "./TodoItem.module.css";
 
-export function TodoItem({ todo: { id, content, checked }, deleteTodo }) {
+export function TodoItem({ todo: { id, content, checked }, onDelete }) {
   return (
     <div className={style.item}>
       <div className={style.content}>
@@ -11,7 +11,7 @@ export function TodoItem({ todo: { id, content, checked }, deleteTodo }) {
         <button>Edit</button>
         <button
           onClick={() => {
-            deleteTodo(id);
+            onDelete(id);
           }}
         >
           Delete
