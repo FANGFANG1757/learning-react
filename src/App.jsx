@@ -15,12 +15,19 @@ function App() {
   function handleDeleteTodo(id) {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
+  function handleToggleTodo(id) {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
 
   return (
     <div>
       <h1>To Do List</h1>
       <TodoForm onSubmit={handleAddTodo} />
-      <TodoList todos={todos} onDelete={handleDeleteTodo} />
+      <TodoList todos={todos} onDelete={handleDeleteTodo} onToggle={handleToggleTodo} />
     </div>
   );
 }

@@ -1,10 +1,18 @@
 import style from "./TodoItem.module.css";
 
-export function TodoItem({ todo: { id, content, checked }, onDelete }) {
+export function TodoItem({
+  todo: { id, content, checked },
+  onDelete,
+  onToggle,
+}) {
   return (
     <div className={style.item}>
       <div className={style.content}>
-        <input type="checkbox" checked={checked} />
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={() => onToggle(id)}
+        />
         {content}
       </div>
       <div>
