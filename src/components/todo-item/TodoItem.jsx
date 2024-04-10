@@ -1,10 +1,27 @@
+import { useState, useEffect } from "react";
 import style from "./TodoItem.module.css";
 
 export function TodoItem({
   todo: { id, content, checked },
   onDelete,
   onToggle,
+  onEdit,
+  isEditing,
+  onSetCurrentTodoId,
 }) {
+  const [editTodo, setEditTodo] = useState(content);
+
+  function handleSave() {
+    onEdit(id, editTodo);
+    onSetCurrentTodoId(null);
+  }
+
+  useEffect(() => {
+    if (!isEditing) {
+      setEditTodo(content);
+    }
+  }, [isEditing]);
+  
   return (
     <div className={style.item}>
       <div className={style.content}>
@@ -13,17 +30,50 @@ export function TodoItem({
           checked={checked}
           onChange={() => onToggle(id)}
         />
-        {content}
+        {isEditing ? (
+          <input
+            type="text"
+            value={editTodo}
+            onChange={(e) => {
+              setEditTodo(e.target.value);
+            }}
+          />
+        ) : (
+          content
+        )}
       </div>
+
       <div>
-        <button>Edit</button>
-        <button
-          onClick={() => {
-            onDelete(id);
-          }}
-        >
-          Delete
-        </button>
+        {isEditing ? (
+          <div>
+            <button onClick={handleSave}>Save</button>
+            <button
+              onClick={() => {
+                onSetCurrentTodoId(null);
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => {
+                onSetCurrentTodoId(id);
+              }}
+            >
+              Edit
+            </button>
+
+            <button
+              onClick={() => {
+                onDelete(id);
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,7 +1,14 @@
 import { TodoItem } from "../todo-item";
 import style from "./TodoList.module.css";
 
-export function TodoList({ onDelete, onToggle, todos }) {
+export function TodoList({
+  onDelete,
+  onToggle,
+  todos,
+  onEdit,
+  currentEditTodoId,
+  onSetCurrentTodoId,
+}) {
   return (
     <ul className={style.list}>
       <li>
@@ -11,6 +18,9 @@ export function TodoList({ onDelete, onToggle, todos }) {
             todo={todo}
             onDelete={onDelete}
             onToggle={onToggle}
+            onEdit={onEdit}
+            isEditing={currentEditTodoId === todo.id}
+            onSetCurrentTodoId={onSetCurrentTodoId}
           />
         ))}
       </li>

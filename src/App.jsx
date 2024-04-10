@@ -5,7 +5,7 @@ import { TodoForm } from "./components/todo-form";
 
 function App() {
   const [todos, setTodos] = useState([]);
-
+  const [currentEditTodoId, setCurrentEditTodoId] = useState(null);
   function handleAddTodo(content) {
     setTodos([
       ...todos,
@@ -22,12 +22,30 @@ function App() {
       )
     );
   }
+  function handleEdit(id, newContent) {
+    setTodos(
+      todos.map((todo) =>
+        id === todo.id ? { ...todo, content: newContent } : todo
+      )
+    );
+  }
+
+  function handleSetCurrentTodoId(id) {
+    setCurrentEditTodoId(id);
+  }
 
   return (
     <div>
       <h1>To Do List</h1>
       <TodoForm onSubmit={handleAddTodo} />
-      <TodoList todos={todos} onDelete={handleDeleteTodo} onToggle={handleToggleTodo} />
+      <TodoList
+        todos={todos}
+        onDelete={handleDeleteTodo}
+        onToggle={handleToggleTodo}
+        onEdit={handleEdit}
+        currentEditTodoId={currentEditTodoId}
+        onSetCurrentTodoId={handleSetCurrentTodoId}
+      />
     </div>
   );
 }
