@@ -5,15 +5,16 @@ export function TodoItem({
   todo: { id, content, checked },
   onDelete,
   onToggle,
-  onEdit,
+  onSubmit,
   isEditing,
-  onSetCurrentTodoId,
+  onEdit,
+  onCancel,
 }) {
   const [editTodo, setEditTodo] = useState(content);
 
   function handleSave() {
-    onEdit(id, editTodo);
-    onSetCurrentTodoId(null);
+    onSubmit(id, editTodo);
+    onCancel(null);
   }
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export function TodoItem({
       setEditTodo(content);
     }
   }, [isEditing]);
-  
+
   return (
     <div className={style.item}>
       <div className={style.content}>
@@ -43,38 +44,36 @@ export function TodoItem({
         )}
       </div>
 
-      <div>
-        {isEditing ? (
-          <div>
-            <button onClick={handleSave}>Save</button>
-            <button
-              onClick={() => {
-                onSetCurrentTodoId(null);
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        ) : (
-          <div>
-            <button
-              onClick={() => {
-                onSetCurrentTodoId(id);
-              }}
-            >
-              Edit
-            </button>
+      {isEditing ? (
+        <div>
+          <button onClick={handleSave}>Save</button>
+          <button
+            onClick={() => {
+              onCancel(null);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <div>
+          <button
+            onClick={() => {
+              onEdit(id);
+            }}
+          >
+            Edit
+          </button>
 
-            <button
-              onClick={() => {
-                onDelete(id);
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        )}
-      </div>
+          <button
+            onClick={() => {
+              onDelete(id);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 }

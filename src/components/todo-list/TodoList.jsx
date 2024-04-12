@@ -5,9 +5,10 @@ export function TodoList({
   onDelete,
   onToggle,
   todos,
-  onEdit,
+  onSubmit,
   currentEditTodoId,
-  onSetCurrentTodoId,
+  onEdit,
+  onCancel
 }) {
   return (
     <ul className={style.list}>
@@ -18,9 +19,10 @@ export function TodoList({
             todo={todo}
             onDelete={onDelete}
             onToggle={onToggle}
-            onEdit={onEdit}
+            onSubmit={onSubmit}
             isEditing={currentEditTodoId === todo.id}
-            onSetCurrentTodoId={onSetCurrentTodoId}
+            onEdit={onEdit}
+            onCancel={onCancel}
           />
         ))}
       </li>

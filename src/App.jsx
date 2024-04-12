@@ -15,19 +15,16 @@ function App() {
   function handleDeleteTodo(id) {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
+
+  const updateTodoList = (targetId, updateFn) => {
+    setTodos(todos.map((todo) => (targetId === todo.id ? updateFn(todo) : todo)));
+  };
+
   function handleToggleTodo(id) {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+    updateTodoList(id, (todo) => ({ ...todo, completed: !todo.completed }));
   }
   function handleEdit(id, newContent) {
-    setTodos(
-      todos.map((todo) =>
-        id === todo.id ? { ...todo, content: newContent } : todo
-      )
-    );
+    updateTodoList(id, (todo) => ({ ...todo, content: newContent }));
   }
 
   function handleSetCurrentTodoId(id) {
@@ -42,9 +39,10 @@ function App() {
         todos={todos}
         onDelete={handleDeleteTodo}
         onToggle={handleToggleTodo}
-        onEdit={handleEdit}
+        onSubmit={handleEdit}
         currentEditTodoId={currentEditTodoId}
-        onSetCurrentTodoId={handleSetCurrentTodoId}
+        onEdit={handleSetCurrentTodoId}
+        onCancel={()=>handleSetCurrentTodoId(null)}
       />
     </div>
   );
