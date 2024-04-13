@@ -1,7 +1,7 @@
 import style from "./TodoForm.module.css";
 import { useState } from "react";
 
-export function TodoForm(onSubmit) {
+export function TodoForm({ onSubmit }) {
   const [newTodo, setNewTodo] = useState("");
 
   const handleSubmit = (e) => {
