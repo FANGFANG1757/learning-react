@@ -23,7 +23,7 @@ function App() {
   function handleToggleTodo(id) {
     updateTodoList(id, (todo) => ({ ...todo, completed: !todo.completed }));
   }
-  function handleEdit(id, newContent) {
+  function handleEditTodo(id, newContent) {
     updateTodoList(id, (todo) => ({ ...todo, content: newContent }));
   }
 
@@ -39,7 +39,7 @@ function App() {
         todos={todos}
         onDelete={handleDeleteTodo}
         onToggle={handleToggleTodo}
-        onSubmit={handleEdit}
+        onSubmit={handleEditTodo}
         currentEditTodoId={currentEditTodoId}
         onEdit={handleSetCurrentTodoId}
         onCancel={()=>handleSetCurrentTodoId(null)}

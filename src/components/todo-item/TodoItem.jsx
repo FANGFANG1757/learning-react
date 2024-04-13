@@ -43,17 +43,10 @@ export function TodoItem({
           content
         )}
       </div>
-
       {isEditing ? (
         <div>
           <button onClick={handleSave}>Save</button>
-          <button
-            onClick={() => {
-              onCancel(null);
-            }}
-          >
-            Cancel
-          </button>
+          <button onClick={onCancel}>Cancel</button>
         </div>
       ) : (
         <div>
